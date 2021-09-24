@@ -14,10 +14,13 @@ router.get('/add-product', (req, res, next) => {
 });
 
 router.post('/add-product', (req, res, next) => {
-    products.push({title: req.body.title});
-    console.log(req.body);
-    console.log(products);
-    console.log(products.title);
+    products.push({
+        title: req.body.title, 
+        price: req.body.price, 
+        description: req.body.description});
+   // console.log(req.body);
+   // console.log(products);
+   // console.log(products.title);
     res.redirect('/');
 });
 
