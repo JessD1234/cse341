@@ -1,44 +1,22 @@
 const express = require('express');
 
-const routeFinder = require('../util/path');
-const path = require('path');
+const adminController = require('../controllers/admin');
 
 const router = express.Router();
 
-const products = [];
-const users = [];
+// /admin-/add-product => GET
+router.get('/add-product', adminController.getAddProduct);
 
-router.get('/add-product', (req, res, next) => {
-    //res.sendFile(path.join(routeFinder, 'views', 'add-product.html'));
-    res.render('add-product', {pageTitle: 'Add Product', path: '/admin/add-product'});
-});
+router.post('/add-product', adminController.postAddProduct);
 
-router.post('/add-product', (req, res, next) => {
-    products.push({
-        title: req.body.title, 
-        price: req.body.price, 
-        description: req.body.description});
-   // console.log(req.body);
-   // console.log(products);
-   // console.log(products.title);
-    res.redirect('/');
-});
+router.get('/edit-product:productId', adminController.getEditProduct);
 
-router.get('/add-users', (req, res, next) => {
-    res.render('add-users', {pageTitle: 'Add User', path: '/admin/add-users'})
-   //res.sendFile(path.join(routeFinder, 'views', 'users.html'));
-});
+router.get('/add-users', adminController.getAddUsers);
 
-router.post('/add-users', (req, res, next) => {
-    users.push({name: req.body.name});
-  console.log(users);
-    res.redirect('/admin/display-users');
-});
+router.post('/add-users', adminController.postAddUsers);
 
-router.get('/display-users', (req, res, next) => {
-    res.render('display-users', {users: users, pageTitle: 'Users', path: '/admin/display-users'})
-   //res.sendFile(path.join(routeFinder, 'views', 'users.html'));
-});
+router.get('/display-users', adminController.getDisplayUsers);
+
+router.get('/products', adminController.getProducts);
 
 exports.routes = router;
-exports.products = products;
