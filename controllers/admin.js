@@ -16,7 +16,13 @@ exports.postAddProduct = (req, res, next) => {
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description;
-    const product = new Product(title, price, description, imageUrl, null, req.user._id);
+    const product = new Product({
+        title: title, 
+        price: price, 
+        imageUrl: imageUrl, 
+        description: description, 
+        userId: req.user
+    });
 
     product.save().then(result => {
         console.log('Product created');
@@ -54,46 +60,31 @@ exports.postEditProduct = (req, res, next) => {
     const updatedPrice = req.body.price;
     const updatedImageUrl = req.body.imageUrl;
     const updatedDesc = req.body.description; 
-    const product = new Product(updatedTitle, updatedPrice, updatedDesc, updatedImageUrl, new ObjectId(productId)); 
-    product.save().then(result => {
+    Product.findById(productId).then(product =>{
+        product.title = updatedTitle;
+        product.price = updatedPrice;
+        product.imageUrl = updatedImageUrl;
+        product.description = updatedDesc;
+        return product.save();
+    }).then(result => {
         console.log('Product updated!');
         res.redirect('/admin/products');
-   })    
+   }).catch(err => console.log(err));    
 };
 
 
 exports.postDeleteProduct = (req, res, next) => {
     const productId = req.body.productId;
-    Product.deleteById(productId).then(() => {
+    Product.findByIdAndRemove(productId).then(() => {
         console.log("Product destroyed.");
         res.redirect('/admin/products');
     }).catch(err => console.log(err));
     
 };
 
-/*
-const users = [];
-
-exports.getAddUsers = (req, res, next) => {
-    res.render('admin/add-users', {pageTitle: 'Add User', path: '/admin/add-users'})
-   //res.sendFile(path.join(routeFinder, 'views', 'users.html'));
-};
-
-
-exports.postAddUsers = (req, res, next) => {
-    users.push({name: req.body.name});
-  console.log(users);
-    res.redirect('/admin/display-users');
-};
-
-exports.getDisplayUsers = (req, res, next) => {
-    res.render('admin/display-users', {users: users, pageTitle: 'Users', path: '/admin/display-users'})
-   //res.sendFile(path.join(routeFinder, 'views', 'users.html'));
-};
-*/
 exports.getProducts = (req, res, next) => {
-    Product.fetchAll().then(products => {
-        // console.log(products);
+    Product.find().populate('userId').then(products => {
+        console.log(products);
          res.render('admin/products', {
              prods: products, 
              pageTitle: 'Admin Products', 
