@@ -10,8 +10,6 @@
             <li class="main-header-nav-items"><a class="<%= path === '/orders' ? 'active' : ''%>" href="/orders">Orders</a></li>           
             <li class="main-header-nav-items"><a class="<%= path === '/admin/add-product' ? 'active' : ''%>" href="/admin/add-product">Add Product</a></li>
             <li class="main-header-nav-items"><a class="<%= path === '/admin/products' ? 'active' : ''%>" href="/admin/products">Admin Products</a></li>
-            <li class="main-header-nav-items"><a class="<%= path === '/admin/add-users' ? 'active' : ''%>" href="/admin/add-users">Add a User</a></li>
-            <li class="main-header-nav-items"><a class="<%= path === '/admin/display-users' ? 'active' : ''%>" href="/admin/display-users">Users</a></li>
             <% } %>
         </ul>
         <ul class="main-header-nav-list">
@@ -41,8 +39,6 @@
             <% if (isAuthenticated) { %>
             <li class="mobile-header-nav-items"><a class="<%= path === '/admin/add-product' ? 'active' : ''%>" href="/admin/edit-product">Add Product</a></li>
             <li class="mobile-header-nav-items"><a class="<%= path === '/admin/products' ? 'active' : ''%>" href="/admin/products">Admin Products</a></li>
-            <li class="mobile-header-nav-items"><a class="<%= path === '/admin/add-users' ? 'active' : ''%>" href="/admin/add-users">Add a User</a></li>
-            <li class="mobile-header-nav-items"><a class="<%= path === '/admin/display-users' ? 'active' : ''%>" href="/admin/display-users">Users</a></li>
             <% } %>
             <% if (!isAuthenticated) { %>
                 <li class="main-header-nav-items"><a class="<%= path === '/login' ? 'active' : ''%>" href="/login">Login</a></li>
