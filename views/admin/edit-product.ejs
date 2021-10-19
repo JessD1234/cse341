@@ -6,16 +6,19 @@
     <%- include('../includes/nav.ejs') %>
 
    <main>
+    <% if (errorMessage) { %>
+        <div class="user-message user-message--error"><%= errorMessage %></div>
+    <% } %>
     <form action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST" class="product-form">
         <div class="form-control">
             <label for="title">Title:</label>
-            <input class="text-input" type="text" name="title" value="<% if (editing) { %><%= product.title%><% } %>">
+            <input class="text-input <%= validationErrors.find(e => e.param === 'title') ? 'invalid' : '' %>" type="text" name="title" value="<% if (editing || hasError) { %><%= product.title%><% } %>">
             <label for="imageUrl">Image URL:</label>
-            <input class="text-input" type="text" name="imageUrl"value="<% if (editing) { %><%= product.imageUrl%><% } %>">
+            <input class="text-input <%= validationErrors.find(e => e.param === 'imageUrl') ? 'invalid' : '' %>" type="text" name="imageUrl"value="<% if (editing || hasError) { %><%= product.imageUrl%><% } %>">
             <label for="price">Price:</label>
-            <input class="text-input" type="text" name="price" value="<% if (editing) { %><%= product.price%><% } %>">
+            <input class="text-input <%= validationErrors.find(e => e.param === 'price') ? 'invalid' : '' %>" type="text" name="price" value="<% if (editing || hasError) { %><%= product.price%><% } %>">
             <label for="description">Description:</label>
-            <textarea class="text-input" name="description" rows="5"><% if (editing) { %><%= product.description%><% } %></textarea>
+            <textarea class="text-input <%= validationErrors.find(e => e.param === 'email') ? 'description' : '' %>" name="description" rows="5"><% if (editing || hasError) { %><%= product.description%><% } %></textarea>
             <input type="hidden" value="<%= csrfToken %>" name="_csrf">
         </div>
         <% if (editing) { %>
