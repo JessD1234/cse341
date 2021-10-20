@@ -2,6 +2,11 @@
     margin: 1rem 0;
 }
 
+.login-form {
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
 .form-control label,
 .form-control input,
 .form-control textarea {
@@ -25,4 +30,16 @@
 
 .invalid {
     border-color: red;
+}
+
+.reset-div {
+    width: 23rem;
+    max-width: 90%;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.reset-div p {
+    margin-left: 20px;
+    margin-top: 20px;
 }

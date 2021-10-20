@@ -34,9 +34,17 @@ exports.getProducts = (req, res, next) => {
   }
 
   exports.getIndex = (req, res, next) => {
-    Product.find().then(products => {
+    /* Product.findOne({$query: {}, $orderby: {$natural : -1}}).then(product => {
+      console.log('This is the result of the above findOne query:');
+    console.log(product);
+    }); */
+    
+    
+    Product.find({}).sort({_id: -1}).limit(1).then(product => {
+      console.log('This is the result of the query:')
+      console.log(product);
        res.render('shop/index', {
-           prods: products, 
+           product: product[0], 
            pageTitle: 'Shop', 
            path: '/'
           });
@@ -58,6 +66,7 @@ exports.getProducts = (req, res, next) => {
             isAuthenticated: req.session.isLoggedIn
       });
     }).catch(err => {
+      console.log(err);
       const error = new Error(err);
         error.httpStatusCode = 500;
         return next(error);

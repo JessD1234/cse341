@@ -17,6 +17,8 @@
             <input class="text-input <%= validationErrors.find(e => e.param === 'imageUrl') ? 'invalid' : '' %>" type="text" name="imageUrl"value="<% if (editing || hasError) { %><%= product.imageUrl%><% } %>">
             <label for="price">Price:</label>
             <input class="text-input <%= validationErrors.find(e => e.param === 'price') ? 'invalid' : '' %>" type="text" name="price" value="<% if (editing || hasError) { %><%= product.price%><% } %>">
+            <label for="authorName">Author Name:</label>
+            <input class="text-input <%= validationErrors.find(e => e.param === 'authorName') ? 'invalid' : '' %>" type="text" name="authorName" value="<% if (editing || hasError) { %><%= product.authorName%><% } %>">
             <label for="description">Description:</label>
             <textarea class="text-input <%= validationErrors.find(e => e.param === 'email') ? 'description' : '' %>" name="description" rows="5"><% if (editing || hasError) { %><%= product.description%><% } %></textarea>
             <input type="hidden" value="<%= csrfToken %>" name="_csrf">

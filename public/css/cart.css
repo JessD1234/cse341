@@ -16,11 +16,32 @@
     margin-bottom: 1rem;
   }
   
-  .cart__item h1,
+  .cart__item h1 {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+    max-width: 40%;
+  }
+
+
   .cart__item h2 {
     margin-right: 1rem;
     font-size: 1.2rem;
     margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .cart__item {
+      flex-flow: column;
+    }
+
+    .cart__item h1 {
+      max-width: 100%;
+    }
+
+    .cart__item h2 {
+      margin: 10px;
+    }
   }
   
   

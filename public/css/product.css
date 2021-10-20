@@ -6,17 +6,17 @@
 }
 
 .product-item {
-    width: 20rem;
+    width: 16rem;
     max-width: 95%;
     margin: 1rem;
 }
 
 .product__title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 
-.product__price {
+.product__price, .product__authorName {
     text-align: center;
     color: #4d4d4d;
     margin-bottom: 0.5rem;
@@ -24,4 +24,8 @@
 
 .product__description {
     text-align: center;
+}
+
+.card__content h2 {
+    font-size: 1rem;
 }

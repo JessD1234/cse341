@@ -23,8 +23,10 @@ exports.postAddProduct = (req, res, next) => {
     const title = req.body.title;
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
+    const authorName = req.body.authorName;
     const description = req.body.description;
     const errors = validationResult(req);
+    console.log(authorName);
 
     if (!errors.isEmpty()) {
         return res.status(422).render('admin/edit-product', {
@@ -36,7 +38,8 @@ exports.postAddProduct = (req, res, next) => {
                 title: title,
                 imageUrl: imageUrl,
                 price: price,
-                description: description
+                description: description,
+                authorName: authorName
             },
             errorMessage: errors.array()[0].msg,
             isAuthenticated: req.session.isLoggedIn,
@@ -49,7 +52,8 @@ exports.postAddProduct = (req, res, next) => {
         price: price, 
         imageUrl: imageUrl, 
         description: description, 
-        userId: req.user
+        userId: req.user,
+        authorName: authorName
     });
 
     product.save().then(result => {
@@ -114,6 +118,7 @@ exports.postEditProduct = (req, res, next) => {
     const updatedPrice = req.body.price;
     const updatedImageUrl = req.body.imageUrl;
     const updatedDesc = req.body.description; 
+    const updatedAuthorName = req.body.authorName;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -127,7 +132,8 @@ exports.postEditProduct = (req, res, next) => {
                 title: updatedTitle,
                 imageUrl: updatedImageUrl,
                 price: updatedPrice,
-                description: updatedDesc
+                description: updatedDesc,
+                authorName: updatedAuthorName
             },
             errorMessage: errors.array()[0].msg,
             isAuthenticated: req.session.isLoggedIn,
@@ -143,6 +149,7 @@ exports.postEditProduct = (req, res, next) => {
         product.price = updatedPrice;
         product.imageUrl = updatedImageUrl;
         product.description = updatedDesc;
+        product.authorName = updatedAuthorName;
         return product.save().then(result => {
             console.log('Product updated!');
             res.redirect('/admin/products');

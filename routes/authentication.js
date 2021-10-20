@@ -10,9 +10,9 @@ router.get('/login', authenticationController.getLogin);
 
 router.get('/signup', authenticationController.getSignup);
 
-router.post('/login', body('email').isEmail().withMessage('Please enter a valid email address.').trim(), body('password', 'That password is incorrect. It needs to be at least 5 characters.').isLength({min: 5}).trim(), authenticationController.postLogin);
+router.post('/login', body('email').isEmail().withMessage('Please enter a valid email address.').trim(), body('password', 'That password is incorrect. Hint: It needs to be at least 5 characters.').isLength({min: 5}).trim(), authenticationController.postLogin);
 
-router.post('/signup', check('email').isEmail().withMessage('Please enter a valid email.').custom((value, {req}) => {
+router.post('/signup', check('name').isLength({min: 2}).withMessage('Please enter more than one character for your name.').isAlphanumeric().withMessage('Please only use letters for your name.').trim(), check('email').isEmail().withMessage('Please enter a valid email.').custom((value, {req}) => {
     return User.findOne({email: req.body.email}).then(userDoc => {
         if (userDoc) {
             return Promise.reject('The email you entered already exists in our system. Please enter a different one, or try logging in.');

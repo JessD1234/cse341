@@ -15,8 +15,22 @@ main {
   margin: auto;
 }
 
+a {
+  color: #00695c;
+}
+
 form {
   display: inline;
+}
+
+.siteTitle {
+  color: white;
+  width: 280px;
+}
+
+.welcome {
+  color: #00695c;
+  font-size: 5rem;
 }
 
 .centered {
@@ -163,7 +177,8 @@ form {
 }
 
 .card {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26); 
+  /* background-color:rgb(255, 246, 235); */
 }
 
 .card__header,
@@ -227,20 +242,25 @@ form {
 
 .user-message {
   margin: auto;
-  width: 90%;
+  max-width: 90%;
   border: 1px solid #4771fa;
   padding: 0.5rem;
   border-radius: 3px;
-  background: #b9c9ff;
   text-align: center;
 }
 
 .user-message--error {
   border-color: red;
-  background: rgb(255, 176, 176);
   color: red;
 }
 
+.detail-image {
+  max-width: 90%;
+}
+
+.error-body {
+  margin-left: 20px;
+}
 
 
 @media (min-width: 768px) {
@@ -258,5 +278,9 @@ form {
 
   .user-message {
     width: 30rem;
+  }
+
+  .error-body {
+    margin-left: 80px;
   }
 }

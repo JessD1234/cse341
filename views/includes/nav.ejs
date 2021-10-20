@@ -1,5 +1,6 @@
 <div class="backdrop"></div>
 <header class="main-header">
+    <h1 class="siteTitle">The Collection</h1>
     <button id="side-menu-toggle">Menu</button>
     <nav class="main-header-nav">
         <ul class="main-header-nav-list">
@@ -37,19 +38,19 @@
             <li class="mobile-header-nav-items"><a class="<%= path === '/cart' ? 'active' : ''%>" href="/cart">Cart</a></li>
             <li class="mobile-header-nav-items"><a class="<%= path === '/orders' ? 'active' : ''%>" href="/orders">Orders</a></li>
             <% if (isAuthenticated) { %>
-            <li class="mobile-header-nav-items"><a class="<%= path === '/admin/add-product' ? 'active' : ''%>" href="/admin/edit-product">Add Product</a></li>
+            <li class="mobile-header-nav-items"><a class="<%= path === '/admin/add-product' ? 'active' : ''%>" href="/admin/add-product">Add Product</a></li>
             <li class="mobile-header-nav-items"><a class="<%= path === '/admin/products' ? 'active' : ''%>" href="/admin/products">Admin Products</a></li>
             <% } %>
             <% if (!isAuthenticated) { %>
-                <li class="main-header-nav-items"><a class="<%= path === '/login' ? 'active' : ''%>" href="/login">Login</a></li>
-                <li class="main-header-nav-items">
+                <li class="mobile-header-nav-items"><a class="<%= path === '/login' ? 'active' : ''%>" href="/login">Login</a></li>
+                <li class="mobile-header-nav-items">
                     <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
                 </li>
                 <% } else { %>
-                <li class="main-header-nav-items">
+                <li class="mobile-header-nav-items">
                     <form action="/logout" method="post">
                         <input type="hidden" value="<%= csrfToken %>" name="_csrf">
-                        <button type="submit">Logout</button>
+                        <button type="submit" class="btn">Logout</button>
                     </form>
                 </li>
                 <% } %>
