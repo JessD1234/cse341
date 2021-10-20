@@ -45,7 +45,7 @@ exports.getProducts = (req, res, next) => {
       console.log(product);
        res.render('shop/index', {
            product: product[0], 
-           pageTitle: 'Shop', 
+           pageTitle: 'Home | The Collection', 
            path: '/'
           });
    }).catch(err => {
@@ -61,7 +61,7 @@ exports.getProducts = (req, res, next) => {
         const products = user.cart.items;
         res.render('shop/cart', {
             path: '/cart',
-            pageTitle: 'Your Cart',
+            pageTitle: 'Your Cart | The Collection',
             products: products,
             isAuthenticated: req.session.isLoggedIn
       });
@@ -126,7 +126,7 @@ exports.getProducts = (req, res, next) => {
     Order.find({"user.userId": req.user._id}).then(orders => {
       res.render('shop/orders', {
             path: '/orders',
-            pageTitle: 'Your Orders',
+            pageTitle: 'Your Orders | The Collection',
             orders: orders,
             isAuthenticated: req.session.isLoggedIn
           });
@@ -141,7 +141,7 @@ exports.getProducts = (req, res, next) => {
   exports.getCheckout = (req, res, next) => {
     res.render('shop/checkout', {
       path: '/checkout',
-      pageTitle: 'Checkout',
+      pageTitle: 'Checkout | The Collection',
       isAuthenticated: req.session.isLoggedIn
     })
   }

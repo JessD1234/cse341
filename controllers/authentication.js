@@ -23,7 +23,7 @@ exports.getLogin = (req, res, next) => {
     
     res.render('authentication/login', {
             path: '/login',
-            pageTitle: 'Login',
+            pageTitle: 'Login | The Collection',
             errorMessage: message,
             oldInput: {
                 email: "",
@@ -44,7 +44,7 @@ exports.getLogin = (req, res, next) => {
     }
     res.render('authentication/signup', {
       path: '/signup',
-      pageTitle: 'Signup',
+      pageTitle: 'Signup | The Collection',
       errorMessage: message,
       oldInput: {
           name: "", 
@@ -64,7 +64,7 @@ exports.getLogin = (req, res, next) => {
       if (!errors.isEmpty()) {
         return res.status(422).render('authentication/login', {
             path: '/login',
-            pageTitle: 'Login',
+            pageTitle: 'Login | The Collection',
             errorMessage: errors.array()[0].msg,
             oldInput: {
                 email: email,
@@ -79,7 +79,7 @@ exports.getLogin = (req, res, next) => {
         if (!user) {
             return res.status(422).render('authentication/login', {
                 path: '/login',
-                pageTitle: 'Login',
+                pageTitle: 'Login | The Collection',
                 errorMessage: 'Invalid email or password.',
                 oldInput: {
                     email: email,
@@ -98,7 +98,7 @@ exports.getLogin = (req, res, next) => {
             }
             return res.status(422).render('authentication/login', {
                 path: '/login',
-                pageTitle: 'Login',
+                pageTitle: 'Login | The Collection',
                 errorMessage: 'Invalid email or password.',
                 oldInput: {
                     email: email,
@@ -125,7 +125,7 @@ exports.getLogin = (req, res, next) => {
             console.log(errors.array());
             return res.status(422).render('authentication/signup', {
                 path: '/signup',
-                pageTitle: 'Signup',
+                pageTitle: 'Signup | The Collection',
                 errorMessage: errors.array()[0].msg,
                 oldInput: {
                     name: name,
@@ -177,7 +177,7 @@ exports.getReset = (req, res, next) => {
     
     res.render('authentication/reset-password', {
         path: '/reset-password',
-        pageTitle: 'Reset Password',
+        pageTitle: 'Reset Password | The Collection',
         errorMessage: message
 
     })
@@ -232,7 +232,7 @@ exports.getNewPassword = (req, res, next) => {
     
         res.render('authentication/new-password', {
             path: '/new-password',
-            pageTitle: 'Set a New Password',
+            pageTitle: 'Set a New Password | The Collection',
             errorMessage: message, 
             userId: user._id,
             passwordToken: token

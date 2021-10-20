@@ -30,7 +30,7 @@ exports.postAddProduct = (req, res, next) => {
 
     if (!errors.isEmpty()) {
         return res.status(422).render('admin/edit-product', {
-            pageTitle: 'Add Prodcut',
+            pageTitle: 'Add Product | The Collection',
             path: '/admin/add-product', 
             editing: false,
             hasError: true,
@@ -64,23 +64,6 @@ exports.postAddProduct = (req, res, next) => {
         error.httpStatusCode = 500;
         return next(error);
         
-        //res.redirect('500');
-            /* return res.status(500).render('admin/edit-product', {
-                pageTitle: 'Add Prodcut',
-                path: '/admin/add-product', 
-                editing: false,
-                hasError: true,
-                product: {
-                    title: title,
-                    imageUrl: imageUrl,
-                    price: price,
-                    description: description
-                },
-                errorMessage: 'Sorry, the database opperation failed. Please try again in a moment.',
-                isAuthenticated: req.session.isLoggedIn,
-                validationErrors: []
-            }); */
-        
     });
 };
 
@@ -95,7 +78,7 @@ exports.getEditProduct = (req, res, next) => {
             return res.redirect('/');
         }
         res.render('admin/edit-product', {
-            pageTitle: 'Edit Prodcut',
+            pageTitle: 'Edit Prodcut | The Collection',
             path: '/admin/edit-product', 
             editing: editMode,
             product: product,
@@ -123,7 +106,7 @@ exports.postEditProduct = (req, res, next) => {
 
     if (!errors.isEmpty()) {
         return res.status(422).render('admin/edit-product', {
-            pageTitle: 'Edit Prodcut',
+            pageTitle: 'Edit Prodcut | The Collection',
             path: '/admin/edit-product', 
             editing: true,
             hasError: true,
@@ -176,7 +159,7 @@ exports.getProducts = (req, res, next) => {
         console.log(products);
          res.render('admin/products', {
              prods: products, 
-             pageTitle: 'Admin Products', 
+             pageTitle: 'Admin Products | The Collection', 
              path: '/admin/products',
              isAuthenticated: req.session.isLoggedIn
             });
